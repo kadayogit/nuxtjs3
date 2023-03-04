@@ -1,14 +1,11 @@
 <template>
-<h2 class="text-2xl font-semibold mb-2">{{ product.title }}</h2>
-<p><img src="" alt=""></p>
-<p>{{ product.description}}</p>
-<p>{{ product.price }}</p>
-<p>{{ product.rating.rate}}</p>
+<!-- use here productdetail component -->
+<ProductDetails :product="product"/>
 </template>
 
-    
 <script setup>
 const { id } = useRoute().params
+
 definePageMeta({
     layout: 'products'
 })
@@ -18,6 +15,11 @@ const url = 'https://fakestoreapi.com/products/' + id;
 
 // create fetch data from API
 const { data: product } = await useFetch(url);
+
+// if product has not value redirect error page
+if (!product.value) {
+    throw createError({statusCode: 404, statusMessage: "Product not found!", fatal: true})
+}
 
 </script>
 
