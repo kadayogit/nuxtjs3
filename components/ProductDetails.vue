@@ -14,9 +14,7 @@
                     <span>Add to cart</span>
                 </button>
             </div>
-
         </div>
- 
     </div>
 </template>
 
